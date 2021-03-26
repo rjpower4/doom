@@ -64,7 +64,7 @@
 (setq power/org-directory (concat power/home-directory "Documents/org"))
 
 ;; --- Visual Settings
-(setq doom-font (font-spec :family "Roboto Mono" :size 15)
+(setq doom-font (font-spec :family "Hack" :size 15)
       doom-variable-pitch-font (font-spec :family "Roboto")
       doom-serif-font (font-spec :family "Roboto"))
 
@@ -77,7 +77,11 @@
 
 
 ;; --- Themes
-(use-package! modus-themes)
+(use-package! modus-themes
+ :config
+ (setq modus-themes-no-mixed-fonts t
+       modus-themes-org-blocks 'grayscale
+       modus-themes-slanted-constructs t))
 (setq power/light-theme   'modus-operandi)
 (setq power/dark-theme    'modus-vivendi)
 (setq power/default-theme 'power/dark-theme)
@@ -110,17 +114,18 @@
   ;; Clear Doom's default templates
   (setq org-capture-templates '())
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WIP(s)" "WAITING(w)" "ATTEND(a)" "QUESTION(q)"
+        '((sequence "TODO(t)" "PROG(p)" "WAIT(w)" "ATND(a)" "QUES(q)"
                     "|"
-                    "DONE(d)" "DEFERRED(f)" "CANCELED(c)")))
+                    "DONE(d)" "DEFR(f)" "CANC(c)")))
   (setq org-todo-keyword-faces
-        '(("TODO" .     "#fb4933")
-          ("ATTEND" .   "#d872cb")
-          ("STARTED" .  "#fabd2f")
-          ("WAITING" .  "#fe8019")
-          ("DONE" .     "#b8bb26")
-          ("DEFERRED" . "#de869b")
-          ("CANCELED" . "#83a598"))
+        '(("TODO" . "red")
+          ("PROG" . "gold")
+          ("WAIT" . "orchid")
+          ("ATND" . "magenta")
+          ("QUES" . "salmon")
+          ("DONE" . "green")
+          ("DEFR" . "steel blue")
+          ("CANC" . "dark gray"))
         )
   (setq org-confirm-babel-evaluate nil
         org-use-property-inheritance t
@@ -156,22 +161,23 @@
 (after! latex (setq font-latex-fontify-script nil))
 
 ;; --- Avy
-(setq avy-all-windows t)
 
 ;; Custom Bindings for jumping
 (use-package! avy
+  :custom
+  (avy-all-windows t)
   :config
-  (map! "M-SPC" #'avy-goto-word-or-subword-1))
-(map! :leader
-      :desc "Word"   "j" #'avy-goto-word-or-subword-1
-      :desc "Window" "W" #'ace-window
-      :desc "Line"   "J" #'avy-goto-line)
+  (map! :leader
+        :desc "Word"   "j" #'avy-goto-word-or-subword-1
+        :desc "Window" "W" #'ace-window
+        :desc "Line"   "J" #'avy-goto-line))
 
 ;; --- Ace window
 (use-package! ace-window
   :config
-  (map! "C-M-SPC" #'ace-window)
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (map! :leader
+        "w w" 'ace-window))
 
 ;; --- Swiper
 (setq swiper-use-visual-line nil)
@@ -206,5 +212,21 @@
                      "url"
                      "COMMIT_EDITMSG\\'")))
 
+;; Evil
+(use-package! evil
+  :custom
+  (evil-normal-state-cursor  'box)
+  (evil-insert-state-cursor  'box)
+  (evil-visual-state-cursor  'hollow)
+  (evil-motion-state-cursor   nil)
+  (evil-replace-state-cursor  'hbar)
+  (evil-operator-state-cursor 'evil-half-cursor))
+
+;; Show a message
+(setq initial-scratch-message ";; Welcome to emacs!\n\n")
+
+;; Show the fill column
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
+(setq fill-column 90)
 
 (setq recentf-max-saved-items 10000)
