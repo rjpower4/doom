@@ -123,7 +123,7 @@
           ("WAIT" . "orchid")
           ("ATND" . "magenta")
           ("QUES" . "salmon")
-          ("DONE" . "green")
+          ("DONE" . "forest green")
           ("DEFR" . "steel blue")
           ("CANC" . "dark gray"))
         )
