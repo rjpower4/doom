@@ -182,7 +182,7 @@
 
 ;; --- Swiper
 (setq swiper-use-visual-line nil)
-(setq swiper-use-visual-line-p (lambda (a) nil))
+(setq swiper-use-visual-line-p (lambda (_) nil))
 
 ;; --- Clangd
 (setq lsp-clients-clangd-args '("-j=3"
