@@ -230,4 +230,9 @@
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (setq fill-column 90)
 
+;; Julia
+(use-package! julia-repl
+  :config
+  (julia-repl-set-terminal-backend 'vterm))
+
 (setq recentf-max-saved-items 10000)
