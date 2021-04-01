@@ -64,7 +64,7 @@
 (setq power/org-directory (concat power/home-directory "Documents/org"))
 
 ;; --- Visual Settings
-(setq doom-font (font-spec :family "Hack" :size 15)
+(setq doom-font (font-spec :family "Hack" :size 16)
       doom-variable-pitch-font (font-spec :family "Roboto")
       doom-serif-font (font-spec :family "Roboto"))
 
