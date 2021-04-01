@@ -114,14 +114,13 @@
   ;; Clear Doom's default templates
   (setq org-capture-templates '())
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "PROG(p)" "WAIT(w)" "ATND(a)" "QUES(q)"
+        '((sequence "TODO(t)" "PROG(p)" "WAIT(w)" "QUES(q)"
                     "|"
                     "DONE(d)" "DEFR(f)" "CANC(c)")))
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
           ("PROG" . "gold")
           ("WAIT" . "orchid")
-          ("ATND" . "magenta")
           ("QUES" . "salmon")
           ("DONE" . "forest green")
           ("DEFR" . "steel blue")
