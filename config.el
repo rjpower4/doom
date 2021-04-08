@@ -119,7 +119,7 @@
                     "DONE(d)" "DEFR(f)" "CANC(c)")))
   (setq org-todo-keyword-faces
         '(("TODO" . "red")
-          ("PROG" . "gold")
+          ("PROG" . "goldenrod")
           ("WAIT" . "orchid")
           ("QUES" . "salmon")
           ("DONE" . "forest green")
