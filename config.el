@@ -64,7 +64,7 @@
 (setq power/org-directory (concat power/home-directory "Documents/org"))
 
 ;; --- Visual Settings
-(setq doom-font (font-spec :family "Hack" :size 16)
+(setq doom-font (font-spec :family "PT Mono" :size 16)
       doom-variable-pitch-font (font-spec :family "Roboto")
       doom-serif-font (font-spec :family "Roboto"))
 
@@ -84,7 +84,7 @@
        modus-themes-slanted-constructs t))
 (setq power/light-theme   'modus-operandi)
 (setq power/dark-theme    'modus-vivendi)
-(setq power/default-theme 'power/dark-theme)
+(setq power/default-theme 'power/light-theme)
 
 (defun power/night-mode ()
   (interactive)
@@ -97,7 +97,7 @@
   (doom/reload-theme))
 
 (after! modus-themes
-  (power/night-mode))
+  (power/day-mode))
 
 ;; --- Misc
 ;; Show time in mode line
