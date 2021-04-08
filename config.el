@@ -214,6 +214,7 @@
 
 ;; Evil
 (use-package! evil
+  :defer t
   :custom
   (evil-normal-state-cursor  'box)
   (evil-insert-state-cursor  'box)
