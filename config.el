@@ -234,4 +234,23 @@
   :config
   (julia-repl-set-terminal-backend 'vterm))
 
+;; IRC
+(after! circe
+  (set-irc-server! "chat.freenode.net"
+                   `(:tls t
+                     :port 6697
+                     :nick "rjpower4"
+                     :sasl-username ,(+pass-get-user "irc/freenode.net")
+                     :sasl-password (lambda (&rest _)
+                                      (+pass-get-secret "irc/freenode.net"))
+                     :channels (:after-auth "#emacs" "#fedora")))
+  (set-irc-server! "irc.geekshed.net"
+                   `(:tls t
+                     :port 6697
+                     :nick "rjpower4"
+                     :sasl-username ,(+pass-get-user "irc/freenode.net")
+                     :sasl-password (lambda (&rest _)
+                                      (+pass-get-secret "irc/freenode.net"))
+                     :channels (:after-auth "#jupiterbroadcasting"))))
+
 (setq recentf-max-saved-items 10000)
