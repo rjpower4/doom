@@ -61,10 +61,10 @@
 
 ;; --- Directories
 (setq power/home-directory "/home/rpower/")
-(setq power/org-directory (concat power/home-directory "Documents/org"))
+(setq power/org-directory (concat power/home-directory "Dropbox/org"))
 
 ;; --- Visual Settings
-(setq doom-font (font-spec :family "PT Mono" :size 16)
+(setq doom-font (font-spec :family "Hack" :size 15)
       doom-variable-pitch-font (font-spec :family "Roboto")
       doom-serif-font (font-spec :family "Roboto"))
 
@@ -75,6 +75,9 @@
 (set-face-background 'vertical-border "grey")
 (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
+;; Location
+(setq calendar-latitude 40.424660)
+(setq calendar-longitude -86.848460)
 
 ;; --- Themes
 (use-package! modus-themes
@@ -96,8 +99,19 @@
   (load-theme power/light-theme t)
   (doom/reload-theme))
 
+(defun power/auto-theme ()
+  "Select the theme automatically based on the time of day."
+  (require 'solar)
+  (let* ((cur-hour (string-to-number (substring (current-time-string) 11 13)))
+         (sun-events (solar-sunrise-sunset (calendar-current-date)))
+         (sunrise (caar sun-events))
+         (sunset  (caadr sun-events)))
+    (if (and (> cur-hour sunrise) (< cur-hour sunset))
+        (power/day-mode)
+      (power/night-mode))))
+
 (after! modus-themes
-  (power/day-mode))
+  (power/auto-theme))
 
 ;; --- Misc
 ;; Show time in mode line
@@ -234,24 +248,5 @@
 (use-package! julia-repl
   :config
   (julia-repl-set-terminal-backend 'vterm))
-
-;; IRC
-(after! circe
-  (set-irc-server! "chat.freenode.net"
-                   `(:tls t
-                     :port 6697
-                     :nick "rjpower4"
-                     :sasl-username ,(+pass-get-user "irc/freenode.net")
-                     :sasl-password (lambda (&rest _)
-                                      (+pass-get-secret "irc/freenode.net"))
-                     :channels (:after-auth "#emacs" "#fedora")))
-  (set-irc-server! "irc.geekshed.net"
-                   `(:tls t
-                     :port 6697
-                     :nick "rjpower4"
-                     :sasl-username ,(+pass-get-user "irc/freenode.net")
-                     :sasl-password (lambda (&rest _)
-                                      (+pass-get-secret "irc/freenode.net"))
-                     :channels (:after-auth "#jupiterbroadcasting"))))
 
 (setq recentf-max-saved-items 10000)
