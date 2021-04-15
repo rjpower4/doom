@@ -128,7 +128,7 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        (json +lsp)         ; At least it ain't XML
-       ;;java              ; the poster child for carpal tunnel syndrome
+       ;;(java +lsp)       ; the poster child for carpal tunnel syndrome
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        (julia)             ; a better, faster MATLAB
        ;;(kotlin +lsp)     ; a better, slicker Java(Script)
@@ -178,7 +178,7 @@
 
        :app
        ;;calendar
-       irc                 ; how neckbeards socialize
+       ;;irc               ; how neckbeards socialize
        (rss +org)          ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
 
