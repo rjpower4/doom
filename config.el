@@ -226,6 +226,11 @@
                      "url"
                      "COMMIT_EDITMSG\\'")))
 
+;; Turn off format on save for specific modes
+(setq +format-on-save-enabled-modes
+      `(not julia-mode
+            text-mode))
+
 ;; Evil
 (use-package! evil
   :defer t
