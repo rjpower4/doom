@@ -81,10 +81,10 @@
 
 ;; --- Themes
 (use-package! modus-themes
- :config
- (setq modus-themes-no-mixed-fonts t
-       modus-themes-org-blocks 'grayscale
-       modus-themes-slanted-constructs t))
+  :config
+  (setq modus-themes-no-mixed-fonts t
+        modus-themes-org-blocks 'grayscale
+        modus-themes-slanted-constructs t))
 (setq power/light-theme   'modus-operandi)
 (setq power/dark-theme    'modus-vivendi)
 (setq power/default-theme 'power/light-theme)
